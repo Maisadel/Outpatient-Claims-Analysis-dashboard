@@ -1,0 +1,5 @@
+SELECT TOP 5 * FROM dbo.OUTPATIENTCLAIMS;
+SELECT Provider, COUNT(CLAIMID) AS Totalclaims, SUM(InscClaimAMtReimbursed) AS Totalreimbursed FROM dbo.OUTPATIENTCLAIMS GROUP BY provider ORDER BY Totalreimbursed DESC;
+SELECT Provider, COUNT(ClaimID) AS TotalClaims, SUM(InscClaimAmtReimbursed) AS TotalReimbursed FROM dbo.OUTPATIENTCLAIMS GROUP BY Provider HAVING SUM(INscClaimAmtReimbursed) >1000000 ORDER BY TotalReimbursed DESC;
+SELECT TOP 10 AttendingPhysician, COUNT(ClaimID) AS TotalClaims, SUM(InscClaimAmtReimbursed) AS TotalReimbursed FROM dbo.OUTPATIENTCLAIMS WHERE AttendingPhysician <> 'NA' GROUP BY AttendingPhysician ORDER BY TotalReimbursed DESC;
+SELECT Provider, COUNT(ClaimID) AS TotalClaims, AVG(INscClaimAmtReimbursed) AS AvgReimbursedPerClaim FROM dbo.OUTPATIENTCLAIMS GROUP BY Provider ORDER BY AvgReimbursedPerClaim DESC;
